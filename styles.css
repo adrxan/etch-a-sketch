@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#frame {
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 2%;
+    margin: 75px auto;
+    background: whitesmoke;
+    padding: 8px;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px;
+}
+
+#grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 2%;
+    background-color: white;
+}
+
+.grid-pixel {
+    border: 1px solid rgb(187, 187, 187);
+}

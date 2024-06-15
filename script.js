@@ -59,19 +59,26 @@ brush.addEventListener("click", () => {
   }
 });
 
+const pickColor = document.querySelector("#color-button");
+let fillColor = pickColor.value;
+
+pickColor.oninput = function () {
+  fillColor = this.value;
+};
+
 function fillPixel(e) {
   if (e.type === "mousedown") {
     isDrawing = true;
     if (isErasing) {
       e.target.style.backgroundColor = "white";
     } else {
-      e.target.style.backgroundColor = "black";
+      e.target.style.backgroundColor = fillColor;
     }
   } else if (e.type === "mouseover" && isDrawing) {
     if (isErasing) {
       e.target.style.backgroundColor = "white";
     } else {
-      e.target.style.backgroundColor = "black";
+      e.target.style.backgroundColor = fillColor;
     }
   } else isDrawing = false;
 }

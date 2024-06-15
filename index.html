@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300" rel="stylesheet" />
     <title>Etch-a-Sketch</title>
 </head>
+
 <body>
     <div id="frame">
         <div id="controls">
-            <button></button>
-            <button></button>
-            <button></button>
-            <button></button>
+            <h1 class="windowTitle">Sketchpad</h1>
+            <div class="rightControls">
+                <button><span class="material-symbols-outlined size-20">
+                        brush
+                    </span></button>
+                <button><span class="material-symbols-outlined size-20">
+                        ink_eraser
+                    </span></button>
+                <button><div id="color-box"></div></button>
+                <button><span class="material-symbols-outlined size-20">
+                        opacity
+                    </span></button>
+                    <button><span class="material-symbols-outlined size-20">
+                            palette
+                        </span></button>
+                <button id="grid-toggle"><span class="material-symbols-outlined size-20">
+                        grid_on
+                    </span></button>
+                <div id="slider-container">
+                    <input type="range" min="6" max="100" value="16" class="slider" id="slider">
+                    <p id="slider-value"></p>
+                </div>
+                <button id="clear-button"><span class="material-symbols-outlined size-20">
+                        delete
+                    </span></button>
+            </div>
         </div>
         <div id="grid-container"></div>
     </div>
-    
+
 </body>
 <script src="script.js" defer></script>
+
 </html>

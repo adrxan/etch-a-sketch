@@ -72,3 +72,11 @@ gridToggle.addEventListener("click", toggleGrid);
 
 const clearBtn = document.querySelector("#clear-button");
 
+clearBtn.addEventListener("click", () => {
+  let r = confirm("This will clear the drawing. Continue?");
+  if (r) {
+    clearPixels();
+    makeGridPixels();
+  }
+});
+

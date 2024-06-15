@@ -1,7 +1,9 @@
 :root {
   --grid-width: 600px;
-  --inactive-color: rgb(158, 158, 158);
-  --accent-color: rgb(121, 121, 153); 
+  --inactive-color: rgba(121, 121, 153, 0.442);
+  --accent-color: rgb(113, 113, 122); 
+  --active-button-color: rgb(221, 221, 221);
+  --frame--color: rgba(238, 238, 238, 0.859);
 }
 
 * {
@@ -23,7 +25,7 @@ html {
   border: 1px ridge rgb(192, 192, 192);
   border-radius: 10px;
   margin: 40px auto 70px auto;
-  background: rgba(238, 238, 238, 0.859);
+  background: var(--frame--color);
   padding: 0px 8px 8px 8px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
     rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
@@ -51,6 +53,7 @@ html {
   background-color: white;
   overflow: hidden;
   border: 1px solid rgba(147, 147, 147, 0.691);
+  touch-action: none;
 }
 
 .grid-pixel {
@@ -64,6 +67,19 @@ button {
   border: 1px ridge rgb(212, 212, 212);
   border-radius: 6px;
   align-items: center;
+  background-color: var(--frame--color);
+}
+
+button:hover {
+  background-color: var( --active-button-color);
+}
+
+button > span {
+  color: var(--accent-color)
+}
+
+button:hover > span {
+  color: var(--accent-color);
 }
 
 #slider-container {
@@ -112,8 +128,4 @@ span.size-20 {
   background-color: rgb(230, 189, 189);
   color: azure;
   border: 1px solid rgb(115, 63, 63);
-}
-
-#grid-toggle > span {
-  color: var(--accent-color);
 }

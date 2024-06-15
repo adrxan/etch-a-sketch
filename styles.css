@@ -1,32 +1,119 @@
+:root {
+  --grid-width: 600px;
+  --inactive-color: rgb(158, 158, 158);
+  --accent-color: rgb(121, 121, 153); 
+}
+
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: rgb(94, 94, 94);
+}
+
+html {
+  height: 100%;
 }
 
 #frame {
-    display: flex;
-    flex-direction: column;
-    width: min-content;
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 2%;
-    margin: 75px auto;
-    background: whitesmoke;
-    padding: 8px;
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  border: 1px ridge rgb(192, 192, 192);
+  border-radius: 10px;
+  margin: 40px auto 70px auto;
+  background: rgba(238, 238, 238, 0.859);
+  padding: 0px 8px 8px 8px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 #controls {
-    display: flex;
-    justify-content: space-between;
-    margin: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.rightControls {
+  display: flex;
+  gap: 6px;
 }
 
 #grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 2%;
-    background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--grid-width);
+  border-radius: 2%;
+  background-color: white;
+  overflow: hidden;
+  border: 1px solid rgba(147, 147, 147, 0.691);
 }
 
 .grid-pixel {
-    border: 1px solid rgb(187, 187, 187);
+  border: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+button {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 8px;
+  border: 1px ridge rgb(212, 212, 212);
+  border-radius: 6px;
+  align-items: center;
+}
+
+#slider-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0px 4px;
+}
+
+.slider {
+  /* appearance: none; */
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  color: black;
+}
+
+#slider:hover {
+  opacity: 1;
+}
+
+#slider::-webkit-slider-thumb {
+  background-color: whitesmoke;
+  color: whitesmoke;
+}
+
+h1 {
+  font-size: 16px;
+  font-family: HelveticaNeue, Arial, sans-serif;
+  font-weight: 500;
+}
+
+span.size-20 {
+  font-size: 20px;
+}
+
+#color-box {
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgb(215, 215, 215);
+  background-color: black;
+  border-radius: 4px;
+}
+
+#clear-button:hover {
+  background-color: rgb(230, 189, 189);
+  color: azure;
+  border: 1px solid rgb(115, 63, 63);
+}
+
+#grid-toggle > span {
+  color: var(--accent-color);
 }

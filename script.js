@@ -29,10 +29,7 @@ sliderValue.textContent = `${slider.value}²`;
 
 const brush = document.querySelector("#brush-button");
 const eraser = document.querySelector("#eraser-button");
-const colorBtn = document.querySelector("#color-button");
-const colorBox = document.querySelector("#color-box");
-const blendBtn = document.querySelector("#blend");
-const randomBtn = document.querySelector("#random-button");
+
 
 let isBrushing = true;
 let isErasing = false;
@@ -66,39 +63,63 @@ pickColor.oninput = function () {
   fillColor = this.value;
 };
 
+let isRandom = false;
+
+
+function toggleRandom() {
+  isRandom = !isRandom;
+  randomBtn.style.backgroundColor = isRandom ? activeBtnColor : frameColor;
+}
+
+const randomBtn = document.querySelector("#random-button");
+randomBtn.addEventListener("click", toggleRandom);
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+
 function fillPixel(e) {
   if (e.type === "mousedown") {
     isDrawing = true;
     if (isErasing) {
       e.target.style.backgroundColor = "white";
     } else {
-      e.target.style.backgroundColor = fillColor;
+      e.target.style.backgroundColor = isRandom ? getRandomColor() : fillColor;
     }
   } else if (e.type === "mouseover" && isDrawing) {
     if (isErasing) {
       e.target.style.backgroundColor = "white";
     } else {
-      e.target.style.backgroundColor = fillColor;
+      e.target.style.backgroundColor = isRandom ? getRandomColor() : fillColor;
     }
-  } else isDrawing = false;
+  } else {
+    isDrawing = false;
+  }
 }
 
 function makeGridPixels() {
   const numPixels = resolution * resolution;
-  let widthOrHeight = 0;
 
   for (let i = 0; i < numPixels; i++) {
     const gridPixel = document.createElement("div");
 
     if (gridVisible) {
-      widthOrHeight = `${parseInt(gridSize) / resolution - 2}px`;
+      gridPixel.style.width = gridPixel.style.height = `${
+        parseInt(gridSize) / resolution - 2
+      }px`;
       gridPixel.style.border = "1px solid rgba(221, 221, 221, 0.5)";
-    } else if (!gridVisible) {
-      widthOrHeight = `${parseInt(gridSize) / resolution}px`;
+    } else {
+      gridPixel.style.width = gridPixel.style.height = `${
+        parseInt(gridSize) / resolution
+      }px`;
       gridPixel.style.border = "none";
     }
-
-    gridPixel.style.width = gridPixel.style.height = widthOrHeight;
 
     gridPixel.addEventListener("mousedown", (e) => fillPixel(e));
     gridPixel.addEventListener("mouseover", (e) => fillPixel(e));
@@ -110,8 +131,6 @@ function makeGridPixels() {
     gridContainer.appendChild(gridPixel);
   }
 }
-
-makeGridPixels();
 
 function clearGridPixels() {
   while (gridContainer.firstChild) {
@@ -129,14 +148,24 @@ slider.oninput = function () {
 const gridIcon = document.querySelector("#grid-icon");
 
 function toggleGrid() {
-  gridVisible = gridVisible ? false : true;
+  gridVisible = !gridVisible;
   gridIcon.style.color = gridVisible ? accentColor : inactiveColor;
 
-  let r = confirm("This will clear the drawing. Continue?");
-  if (r) {
-    clearGridPixels();
-    makeGridPixels();
-  }
+  const gridPixels = gridContainer.querySelectorAll("div");
+
+  gridPixels.forEach((gridPixel) => {
+    if (gridVisible) {
+      gridPixel.style.border = "1px solid rgba(221, 221, 221, 0.5)";
+      gridPixel.style.width = gridPixel.style.height = `${
+        parseInt(gridSize) / resolution - 2
+      }px`;
+    } else {
+      gridPixel.style.border = "none";
+      gridPixel.style.width = gridPixel.style.height = `${
+        parseInt(gridSize) / resolution
+      }px`;
+    }
+  });
 }
 
 gridToggle.addEventListener("click", toggleGrid);
@@ -150,3 +179,5 @@ clearBtn.addEventListener("click", () => {
     makeGridPixels();
   }
 });
+
+makeGridPixels();

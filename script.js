@@ -30,7 +30,6 @@ sliderValue.textContent = `${slider.value}²`;
 const brush = document.querySelector("#brush-button");
 const eraser = document.querySelector("#eraser-button");
 
-
 let isBrushing = true;
 let isErasing = false;
 
@@ -64,11 +63,12 @@ pickColor.oninput = function () {
 };
 
 let isRandom = false;
-
+const randomIcon = document.querySelector("#random-icon");
+randomIcon.style.color = inactiveColor;
 
 function toggleRandom() {
   isRandom = !isRandom;
-  randomBtn.style.backgroundColor = isRandom ? activeBtnColor : frameColor;
+  randomIcon.style.color = isRandom ? accentColor : inactiveColor;
 }
 
 const randomBtn = document.querySelector("#random-button");
@@ -82,7 +82,6 @@ function getRandomColor() {
   }
   return color;
 }
-
 
 function fillPixel(e) {
   if (e.type === "mousedown") {
